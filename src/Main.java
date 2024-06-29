@@ -11,29 +11,30 @@ public class Main {
 
     public static void main(String[] args) {
         addBook("978-0061120084", "To Kill a Mockingbird", "Harper Lee", "Classic American novel");
-        addBook("978-0451524935",  "1984", "George Orwell","Dystopian political fiction");
-        addBook("978-0743273565",  "The Great Gatsby","F. Scott Fitzgerald", "Roaring twenties tragedy");
+        addBook("978-0451524935", "1984", "George Orwell", "Dystopian political fiction");
+        addBook("978-0743273565", "The Great Gatsby", "F. Scott Fitzgerald", "Roaring twenties tragedy");
 
 
-        System.out.println("\nAvailable Book Quantity: " + bookQuantity);
-        for(int i = 0; i < bookQuantity; i++){
-                System.out.println("\nISBN: " + books[i][0]);
-                System.out.println("Title: " + books[i][1]);
-                System.out.println("Author: " + books[i][2]);
-                System.out.println("Additional Information: " + books[i][3] + "\n");
+        System.out.println("\nAvailable Book Quantity: " + bookQuantity + "\n");
+        for (int i = 0; i < bookQuantity; i++) {
+            System.out.println("Book " + (i + 1) + ": ");
+            System.out.println("\nISBN: " + books[i][0]);
+            System.out.println("Title: " + books[i][1]);
+            System.out.println("Author: " + books[i][2]);
+            System.out.println("Additional Information: " + books[i][3] + "\n");
         }
 
     }
 
-    static void addBook(String ISBN, String title, String author, String additionalInformation){
-        if(bookQuantity < INDEX){
+    static void addBook(String ISBN, String title, String author, String additionalInformation) {
+        if (bookQuantity < INDEX) {
             books[bookQuantity][0] = ISBN;
             books[bookQuantity][1] = title;
             books[bookQuantity][2] = author;
             books[bookQuantity][3] = additionalInformation;
 
             bookQuantity++;
-        }else{
+        } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
         }
     }
