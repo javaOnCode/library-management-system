@@ -15,11 +15,12 @@ public class Main {
         addBook("978-0743273565",  "The Great Gatsby","F. Scott Fitzgerald", "Roaring twenties tragedy");
 
 
-        System.out.println("\nAvailable Book Quantity: " + bookQuantity + "\n");
-        for(int i = 0; i< books.length; i++){
-            for(int j = 0; j < books[0].length; j++){
-                System.out.println(books[i][j]);
-            }
+        System.out.println("\nAvailable Book Quantity: " + bookQuantity);
+        for(int i = 0; i < bookQuantity; i++){
+                System.out.println("\nISBN: " + books[i][0]);
+                System.out.println("Title: " + books[i][1]);
+                System.out.println("Author: " + books[i][2]);
+                System.out.println("Additional Information: " + books[i][3] + "\n");
         }
 
     }
