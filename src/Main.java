@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
 
     static int INDEX = 50;
@@ -10,6 +12,30 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+
+        displayBookDetails();
+    }
+    // for displaying book details - get ISBN and title.
+    // show details to the user.
+
+    static void displayBookDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\nEnter the title of the book that you're interested for detailed information: ");
+        String title = scanner.nextLine();
+
+        for (int i = 0; i < books.length; i++) {
+            if (books[i][1] != title) {
+                System.out.println("Oops, Book Not Found!");
+                break;
+            } else {
+                System.out.println("ISBN: " + books[i][0]);
+                System.out.println("Title: " + title);
+                System.out.println("Author: " + books[i][2]);
+                System.out.println("Additional Information: " + books[i][3]);
+
+            }
+        }
     }
 }
