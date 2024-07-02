@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
 
     static int INDEX = 50;
@@ -23,7 +25,6 @@ public class Main {
             System.out.println("Author: " + books[i][2]);
             System.out.println("Additional Information: " + books[i][3] + "\n");
         }
-
     }
 
     static void addBook(String ISBN, String title, String author, String additionalInformation) {
@@ -38,4 +39,5 @@ public class Main {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
         }
     }
+
 }
