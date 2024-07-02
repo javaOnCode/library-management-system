@@ -16,7 +16,7 @@ public class Main {
     static void removeBook(String ISBN, String bookName) {
         if (bookQuantity == 0) {
             System.out.println("There is no book in the library.");
-            return;
+
         }
 
         boolean bookFound = false;
