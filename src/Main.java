@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 public class Main {
 
     static int INDEX = 50;
@@ -10,6 +12,16 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+    }
+
+    static int countTotalBooks() {
+        if (bookQuantity != 0) {
+            System.out.println("\nTotal Book Quantity in the library: " + bookQuantity);
+            return bookQuantity;
+        } else {
+            System.out.println("\nThere is no book in the library.");
+            return 0;
+        }
     }
 }
