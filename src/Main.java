@@ -15,17 +15,16 @@ public class Main {
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
 
-        String[][] newBooks = new String[books.length + 1][4];
+        String[][] additionalBooks = new String[books.length + 1][4];
 
-        System.arraycopy(books, 0, newBooks, 0, books.length);
-        newBooks[books.length][0] = newBookISBN;
-        newBooks[books.length][1] = newBookTitle;
-        newBooks[books.length][2] = newBookAuthor;
-        newBooks[books.length][3] = newBookAdditionalInformation;
+        System.arraycopy(books, 0, additionalBooks, 0, books.length);
+        additionalBooks[books.length][0] = newBookISBN;
+        additionalBooks[books.length][1] = newBookTitle;
+        additionalBooks[books.length][2] = newBookAuthor;
+        additionalBooks[books.length][3] = newBookAdditionalInformation;
 
-        books = newBooks;
-
-        System.out.println("New book after 50th added to the array succesfully: ");
-
+        bookQuantity++;
+        books = additionalBooks;
     }
+
 }
