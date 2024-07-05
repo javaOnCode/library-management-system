@@ -14,6 +14,7 @@ public class Main {
     }
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
+
         String[][] newBooks = new String[books.length + 1][4];
 
         System.arraycopy(books, 0, newBooks, 0, books.length);
@@ -24,8 +25,7 @@ public class Main {
 
         books = newBooks;
 
-        for (String[] book : books) {
-            System.out.println(book);
-        }
+        System.out.println("New book after 50th added to the array succesfully: ");
+
     }
 }
