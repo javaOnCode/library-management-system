@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
 
     static int INDEX = 50;
@@ -39,6 +41,20 @@ public class Main {
         if(!bookFound){
             System.out.println("Book Not Found!");
         }
-
     }
+
+    static void addBook(String ISBN, String title, String author, String additionalInformation) {
+        if (bookQuantity < INDEX) {
+            books[bookQuantity][0] = ISBN;
+            books[bookQuantity][1] = title;
+            books[bookQuantity][2] = author;
+            books[bookQuantity][3] = additionalInformation;
+
+            bookQuantity++;
+        } else {
+            System.out.println("\nOur shelves are full, so that we can't add the new one...");
+        }
+    }
+
+
 }
