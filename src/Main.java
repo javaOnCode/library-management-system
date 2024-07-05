@@ -12,6 +12,35 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+    }
+
+    static void removeBook(String ISBN, String bookName) {
+        if (bookQuantity == 0) {
+            System.out.println("There is no book in the library.");
+
+        }
+
+        boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if(books[i][0].equals(ISBN) && books[i][1].equals(bookName)){
+                bookFound = true;
+
+                for(int j = i; j < bookQuantity - 1; j++){
+                    books[j] = books[j + 1];
+                }
+
+                books[bookQuantity - 1] = null;
+                bookQuantity--;
+                System.out.printf("\"%s\" - book with this specific name and \"%s\" ISBN is deleted from the library succesfully.\n", bookName,ISBN);
+                break;
+            }
+        }
+
+        if(!bookFound){
+            System.out.println("Book Not Found!");
+        }
     }
 
     static void addBook(String ISBN, String title, String author, String additionalInformation) {
