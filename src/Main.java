@@ -16,23 +16,33 @@ public class Main {
     }
 
 
+    static void viewAvailableBooks() {
+        boolean bookFound = false;
+
+        if (bookQuantity != 0) {
+            bookFound = true;
+            System.out.println("\nHere is the list of all available books in the library  ->\n");
+
+            for (int i = 0; i < bookQuantity; i++) {
+                System.out.print("Book " + (i + 1) + ": ");
+                System.out.println(books[i][1]);
+            }
+        }
+        if (!bookFound) {
+            System.out.println("Oops, sth wrong happened while finding books.");
+        }
+    }
+  
+  
     static void displayBookDetails() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\nEnter the title of the book that you're interested for detailed information: ");
         String bookTitle = scanner.nextLine();
 
-    static void removeBook(String ISBN, String bookName) {
-        if (bookQuantity == 0) {
-            System.out.println("There is no book in the library.");
-
-        }
-
-
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
-
             if (books[i][1].equals(bookTitle)) {
                 System.out.println("\nHere is your desired book ->");
                 System.out.println("Title: " + books[i][1]);
@@ -46,7 +56,18 @@ public class Main {
         if (!bookFound) {
             System.out.println("Oops, Book Not Found!");
         }
+    }
+  
+  
+    static void removeBook(String ISBN, String bookName) {
+        if (bookQuantity == 0) {
+            System.out.println("There is no book in the library.");
 
+        }
+
+        boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
             if(books[i][0].equals(ISBN) && books[i][1].equals(bookName)){
                 bookFound = true;
 
@@ -65,6 +86,7 @@ public class Main {
             System.out.println("Book Not Found!");
         }
     }
+  
 
     static void addBook(String ISBN, String title, String author, String additionalInformation) {
         if (bookQuantity < INDEX) {
