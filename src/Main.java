@@ -15,15 +15,24 @@ public class Main {
 
     }
 
+
     static void displayBookDetails() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\nEnter the title of the book that you're interested for detailed information: ");
         String bookTitle = scanner.nextLine();
 
+    static void removeBook(String ISBN, String bookName) {
+        if (bookQuantity == 0) {
+            System.out.println("There is no book in the library.");
+
+        }
+
+
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
+
             if (books[i][1].equals(bookTitle)) {
                 System.out.println("\nHere is your desired book ->");
                 System.out.println("Title: " + books[i][1]);
@@ -37,5 +46,25 @@ public class Main {
         if (!bookFound) {
             System.out.println("Oops, Book Not Found!");
         }
+
+            if(books[i][0].equals(ISBN) && books[i][1].equals(bookName)){
+                bookFound = true;
+
+                for(int j = i; j < bookQuantity - 1; j++){
+                    books[j] = books[j + 1];
+                }
+
+                books[bookQuantity - 1] = null;
+                bookQuantity--;
+                System.out.printf("\"%s\" - book with this specific name and \"%s\" ISBN is deleted from the library succesfully.\n", bookName,ISBN);
+                break;
+            }
+        }
+
+        if(!bookFound){
+            System.out.println("Book Not Found!");
+        }
+
+
     }
 }
