@@ -1,4 +1,6 @@
+import org.w3c.dom.ls.LSOutput;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -13,6 +15,18 @@ public class Main {
 
     public static void main(String[] args) {
 
+    }
+
+
+
+    static int countTotalBooks() {
+        if (bookQuantity != 0) {
+            System.out.println("\nTotal Book Quantity in the library: " + bookQuantity);
+            return bookQuantity;
+        } else {
+            System.out.println("\nThere is no book in the library.");
+            return 0;
+        }
     }
 
 
@@ -59,6 +73,7 @@ public class Main {
     }
   
   
+
     static void removeBook(String ISBN, String bookName) {
         if (bookQuantity == 0) {
             System.out.println("There is no book in the library.");
