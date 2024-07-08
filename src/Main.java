@@ -44,6 +44,7 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, sth wrong happened while finding books.");
+            System.exit(404);
         }
     }
   
@@ -68,6 +69,7 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, Book Not Found!");
+            System.exit(404);
         }
     }
   
@@ -98,6 +100,7 @@ public class Main {
 
         if(!bookFound){
             System.out.println("Book Not Found!");
+            System.exit(404);
         }
     }
   
@@ -112,6 +115,7 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
+            System.exit(404);
         }
 
     }
