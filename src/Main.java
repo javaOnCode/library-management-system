@@ -139,6 +139,7 @@ public class Main {
         }
         if(!bookFound){
             System.out.println("Such book is not available in the library.");
+            System.exit(404);
         }
     }
 
