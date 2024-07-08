@@ -141,6 +141,7 @@ public class Main {
 
         if(!userFound){
             System.out.println("\nOops, user not found.");
+            System.exit(404);
         }
     }
   
