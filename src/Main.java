@@ -11,7 +11,7 @@ public class Main {
     static int bookQuantity = 0;
     static int userQuantity = 0;
     static int transactionQuantity = 0;
-
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -49,7 +49,6 @@ public class Main {
   
   
     static void displayBookDetails() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("\nEnter the title of the book that you're interested for detailed information: ");
         String bookTitle = scanner.nextLine();
