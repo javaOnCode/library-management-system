@@ -15,6 +15,22 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+    }
+
+    static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
+
+        String[][] additionalBooks = new String[books.length + 1][4];
+
+        System.arraycopy(books, 0, additionalBooks, 0, books.length);
+        additionalBooks[books.length][0] = newBookISBN;
+        additionalBooks[books.length][1] = newBookTitle;
+        additionalBooks[books.length][2] = newBookAuthor;
+        additionalBooks[books.length][3] = newBookAdditionalInformation;
+
+        bookQuantity++;
+        books = additionalBooks;
+
     }
 
 
@@ -44,7 +60,6 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, sth wrong happened while finding books.");
-            System.exit(404);
         }
     }
   
@@ -69,22 +84,20 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, Book Not Found!");
-            System.exit(404);
         }
     }
   
   
 
-    static void removeBook(String ISBN, String bookName) {
+    static void removeBook(String ISBN) {
         if (bookQuantity == 0) {
             System.out.println("There is no book in the library.");
-
         }
 
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
-            if(books[i][0].equals(ISBN) && books[i][1].equals(bookName)){
+            if(books[i][0].equals(ISBN)){
                 bookFound = true;
 
                 for(int j = i; j < bookQuantity - 1; j++){
@@ -93,14 +106,13 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                System.out.printf("\"%s\" - book with this specific name and \"%s\" ISBN is deleted from the library succesfully.\n", bookName,ISBN);
+                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n",ISBN);
                 break;
             }
         }
 
         if(!bookFound){
             System.out.println("Book Not Found!");
-            System.exit(404);
         }
     }
   
@@ -115,11 +127,65 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
-            System.exit(404);
+        
         }
 
     }
   
+  
+    static void deleteUserInformation(String ID){
+        if(userQuantity == 0){
+            System.out.println("\nThere is no user registered on the system.");
+        }
+
+        boolean userFound = false;
+
+        for(int i = 0; i < userQuantity; i++){
+            if(users[i][0].equals(ID)){
+                userFound = true;
+            }
+
+            for(int j = i; j < userQuantity - 1; j++){
+                users[j] = users[j + 1];
+            }
+
+            users[userQuantity - 1] = null;
+            userQuantity--;
+            System.out.printf("\n\"%s\" - user with the given ID is deleted from the system.", ID);
+            break;
+        }
+
+        if(!userFound){
+            System.out.println("\nOops, user not found.");
+        }
+    }
+  
+  
+  
+    static void updateBook(String newISBN, String newTitle, String newAuthor, String newInfo) {
+
+        System.out.print("Please enter the ISBN of the book you would like to update here: ");
+        String bookISBNForUpdate = scanner.nextLine();
+
+        boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(bookISBNForUpdate)) {
+                bookFound = true;
+
+                books[i][0] = newISBN;
+                books[i][1] = newTitle;
+                books[i][2] = newAuthor;
+                books[i][3] = newInfo;
+
+                System.out.println("Book succesfully updated.");
+            }
+        }
+        if(!bookFound){
+            System.out.println("Such book is not available in the library.");
+        }
+    }
+    
     static void updatePatronInfo(String newID, String newUserName, String newEmail, String newPassword){
 
         System.out.print("Please enter the ID of the user you would like to update: ");
@@ -143,5 +209,5 @@ public class Main {
             System.out.println("\nOops, user with these credentials is not found.");
         }
     }
-
+  
 }
