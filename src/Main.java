@@ -118,15 +118,13 @@ public class Main {
   
   static void updateBook(String newISBN, String newTitle, String newAuthor, String newInfo) {
 
-        System.out.print("\nPlease enter the title of the book you would like to update here: ");
-        String bookTitleForUpdate = scanner.nextLine();
         System.out.print("Please enter the ISBN of the book you would like to update here: ");
         String bookISBNForUpdate = scanner.nextLine();
 
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
-            if (books[i][0].equals(bookISBNForUpdate) && books[i][1].equals(bookTitleForUpdate)) {
+            if (books[i][0].equals(bookISBNForUpdate)) {
                 bookFound = true;
 
                 books[i][0] = newISBN;
@@ -139,7 +137,6 @@ public class Main {
         }
         if(!bookFound){
             System.out.println("Such book is not available in the library.");
-            System.exit(404);
         }
     }
 
