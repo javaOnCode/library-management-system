@@ -15,6 +15,22 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+    }
+
+    static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
+
+        String[][] additionalBooks = new String[books.length + 1][4];
+
+        System.arraycopy(books, 0, additionalBooks, 0, books.length);
+        additionalBooks[books.length][0] = newBookISBN;
+        additionalBooks[books.length][1] = newBookTitle;
+        additionalBooks[books.length][2] = newBookAuthor;
+        additionalBooks[books.length][3] = newBookAdditionalInformation;
+
+        bookQuantity++;
+        books = additionalBooks;
+
     }
 
 
