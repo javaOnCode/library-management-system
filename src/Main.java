@@ -122,15 +122,13 @@ public class Main {
   
     static void updatePatronInfo(String newID, String newUserName, String newEmail, String newPassword){
 
-        System.out.print("\nPlease enter the name of the user you would like to update: ");
-        String userNameForUpdate = scanner.nextLine();
         System.out.print("Please enter the ID of the user you would like to update: ");
         String IDForUpdate = scanner.nextLine();
 
         boolean userFound = false;
 
         for(int i = 0; i < userQuantity; i++){
-            if(users[i][0].equals(IDForUpdate) && users[i][1].equals(userNameForUpdate)){
+            if(users[i][0].equals(IDForUpdate)){
                 userFound = true;
 
                 users[i][0] = newID;
@@ -143,7 +141,6 @@ public class Main {
         }
         if(!userFound){
             System.out.println("\nOops, user with these credentials is not found.");
-            System.exit(404);
         }
     }
 
