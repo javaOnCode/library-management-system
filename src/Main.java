@@ -185,4 +185,29 @@ public class Main {
             System.out.println("Such book is not available in the library.");
         }
     }
+    
+    static void updatePatronInfo(String newID, String newUserName, String newEmail, String newPassword){
+
+        System.out.print("Please enter the ID of the user you would like to update: ");
+        String IDForUpdate = scanner.nextLine();
+
+        boolean userFound = false;
+
+        for(int i = 0; i < userQuantity; i++){
+            if(users[i][0].equals(IDForUpdate)){
+                userFound = true;
+
+                users[i][0] = newID;
+                users[i][1] = newUserName;
+                users[i][2] = newEmail;
+                users[i][3] = newPassword;
+
+                System.out.println("\nUser updated succesfully.");
+            }
+        }
+        if(!userFound){
+            System.out.println("\nOops, user with these credentials is not found.");
+        }
+    }
+  
 }
