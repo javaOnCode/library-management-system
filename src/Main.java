@@ -141,7 +141,7 @@ public class Main {
         boolean userFound = false;
 
         for(int i = 0; i < userQuantity; i++){
-            if(users[i][1].equals(ID)){
+            if(users[i][0].equals(ID)){
                 userFound = true;
             }
 
