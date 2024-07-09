@@ -117,7 +117,7 @@ public class Main {
     }
   
   
-    static void deleteUserInformation(String userName, String ID){
+    static void deleteUserInformation(String ID){
         if(userQuantity == 0){
             System.out.println("\nThere is no user registered on the system.");
         }
@@ -125,7 +125,7 @@ public class Main {
         boolean userFound = false;
 
         for(int i = 0; i < userQuantity; i++){
-            if(users[i][0] == userName && users[i][1] == ID){
+            if(users[i][1].equals(ID)){
                 userFound = true;
             }
 
@@ -135,13 +135,12 @@ public class Main {
 
             users[userQuantity - 1] = null;
             userQuantity--;
-            System.out.printf("\n\"%s\" - user with the given name and \"%s\" - ID is deleted from the system.", userName, ID);
+            System.out.printf("\n\"%s\" - user with the given ID is deleted from the system.", ID);
             break;
         }
 
         if(!userFound){
             System.out.println("\nOops, user not found.");
-            System.exit(404);
         }
     }
   
