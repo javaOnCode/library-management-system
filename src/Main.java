@@ -60,7 +60,6 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, sth wrong happened while finding books.");
-            System.exit(404);
         }
     }
   
@@ -85,22 +84,20 @@ public class Main {
         }
         if (!bookFound) {
             System.out.println("Oops, Book Not Found!");
-            System.exit(404);
         }
     }
   
   
 
-    static void removeBook(String ISBN, String bookName) {
+    static void removeBook(String ISBN) {
         if (bookQuantity == 0) {
             System.out.println("There is no book in the library.");
-
         }
 
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
-            if(books[i][0].equals(ISBN) && books[i][1].equals(bookName)){
+            if(books[i][0].equals(ISBN)){
                 bookFound = true;
 
                 for(int j = i; j < bookQuantity - 1; j++){
@@ -109,14 +106,13 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                System.out.printf("\"%s\" - book with this specific name and \"%s\" ISBN is deleted from the library succesfully.\n", bookName,ISBN);
+                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n",ISBN);
                 break;
             }
         }
 
         if(!bookFound){
             System.out.println("Book Not Found!");
-            System.exit(404);
         }
     }
   
@@ -131,7 +127,7 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
-            System.exit(404);
+        
         }
 
     }
@@ -165,6 +161,28 @@ public class Main {
     }
   
   
+  
+    static void updateBook(String newISBN, String newTitle, String newAuthor, String newInfo) {
 
+        System.out.print("Please enter the ISBN of the book you would like to update here: ");
+        String bookISBNForUpdate = scanner.nextLine();
 
+        boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(bookISBNForUpdate)) {
+                bookFound = true;
+
+                books[i][0] = newISBN;
+                books[i][1] = newTitle;
+                books[i][2] = newAuthor;
+                books[i][3] = newInfo;
+
+                System.out.println("Book succesfully updated.");
+            }
+        }
+        if(!bookFound){
+            System.out.println("Such book is not available in the library.");
+        }
+    }
 }
