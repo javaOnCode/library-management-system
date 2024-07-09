@@ -135,5 +135,36 @@ public class Main {
         }
 
     }
+  
+  
+    static void deleteUserInformation(String ID){
+        if(userQuantity == 0){
+            System.out.println("\nThere is no user registered on the system.");
+        }
+
+        boolean userFound = false;
+
+        for(int i = 0; i < userQuantity; i++){
+            if(users[i][1].equals(ID)){
+                userFound = true;
+            }
+
+            for(int j = i; j < userQuantity - 1; j++){
+                users[j] = users[j + 1];
+            }
+
+            users[userQuantity - 1] = null;
+            userQuantity--;
+            System.out.printf("\n\"%s\" - user with the given ID is deleted from the system.", ID);
+            break;
+        }
+
+        if(!userFound){
+            System.out.println("\nOops, user not found.");
+        }
+    }
+  
+  
+
 
 }
