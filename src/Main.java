@@ -14,8 +14,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-
+      
     }
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
@@ -31,6 +30,30 @@ public class Main {
         bookQuantity++;
         books = additionalBooks;
 
+    }
+
+    static void returnBook() {
+        System.out.println("Please enter the ISBN number of the book you want to return");
+        String bookISBN = scanner.next();
+        Boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(bookISBN)){
+                System.out.println("This book has already been returned");
+                bookFound = true;
+            }
+        }
+        if (!bookFound) {
+            System.out.println("Enter the name of the book you want to return");
+            String bookName = scanner.next();
+            System.out.println("Enter the name of the author");
+            String bookAuthor = scanner.next();
+            System.out.println("Enter additional information");
+            String bookINFO = scanner.next();
+
+            addBook(bookISBN,bookName,bookAuthor,bookINFO);
+            System.out.println("Return is succesfull");
+        }
     }
 
 
@@ -127,7 +150,6 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
-        
         }
 
     }
