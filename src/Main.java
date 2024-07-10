@@ -1,6 +1,6 @@
 import org.w3c.dom.ls.LSOutput;
 import java.util.Scanner;
-
+import java.time.LocalDate;
 
 public class Main {
 
@@ -14,7 +14,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-      
+      returnBook();
     }
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
@@ -50,6 +50,16 @@ public class Main {
             String bookAuthor = scanner.next();
             System.out.println("Enter additional information");
             String bookINFO = scanner.next();
+
+            System.out.println("Enter your userID");
+            String userID = scanner.next();
+
+            LocalDate returnDate = LocalDate.now();
+
+            transactions[transactionQuantity][0] = bookISBN;
+            transactions[transactionQuantity][1] = userID;
+            transactions[transactionQuantity][2] = returnDate.toString();
+            transactionQuantity++;
 
             addBook(bookISBN,bookName,bookAuthor,bookINFO);
             System.out.println("Return is succesfull");
