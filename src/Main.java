@@ -235,26 +235,5 @@ public class Main {
         }
     }
 
-    static void reserveBook(String bookISBN, String userID, int reservationDuration){
 
-        boolean isBookAvailable = false;
-
-        for(int i = 0; i < bookQuantity; i++){
-            if(books[i][0].equals(bookISBN)){
-                isBookAvailable = true;
-                break;
-            }
-        }
-
-        if(isBookAvailable){
-
-            LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
-
-            System.out.printf("You have succesfully reserved this book until %s this date.", reservationEndDate);
-
-        }
-        else{
-            System.out.println("Reservation failed, please try again.");
-        }
-    }
 }
