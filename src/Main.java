@@ -22,6 +22,23 @@ public class Main {
 
     }
 
+    static boolean isBookAvailable(String ISBN){
+        for (int i =0; i<bookQuantity; i++){
+            if (books[i][0].equals(ISBN)){
+                return true;
+            }
+        }
+        return false;
+    }
+static boolean isBookAvailableForReturning(String ISBN){
+        for (int i=0; i<transactionQuantity; i++){
+            if (transactions[i][0].equals(ISBN)){
+                return true;
+            }
+        }
+        return false;
+}
+
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
 
         String[][] additionalBooks = new String[books.length + 1][4];
