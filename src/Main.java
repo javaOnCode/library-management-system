@@ -2,6 +2,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -16,6 +17,7 @@ public class Main {
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
     static LocalDate currentDate = LocalDate.now();
+    static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
     }
@@ -246,10 +248,21 @@ public class Main {
 
         if(isBookAvailable){
 
+            int daysTillCheckout = 3;
+            LocalDate pickUpDeadline = currentDate.plusDays(daysTillCheckout);// in 3 days, u have to take it from library
             LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
 
-            System.out.printf("You have succesfully reserved this book until %s this date.", reservationEndDate);
+            System.out.printf("You have succesfully reserved this book until this date - \"%s\"\n", reservationEndDate.format(formattedDate));
+            System.out.printf("You have to pick up the book  until this date - \"%s\"\n", pickUpDeadline.format(formattedDate));
 
+            LocalDate userPickUpDate = currentDate.plusDays(4);
+
+            if(userPickUpDate.isBefore(pickUpDeadline) || userPickUpDate.isEqual(pickUpDeadline)){
+                System.out.println("You have picked up the book on time.");
+            }
+            else{
+                System.out.println("You failed to pick up the book on time, Reservation failed.");
+            }
         }
         else{
             System.out.println("Reservation failed, please try again.");
