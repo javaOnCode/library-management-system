@@ -32,9 +32,7 @@ public class Main {
 
     }
 
-    static void returnBook() {
-        System.out.println("Please enter the ISBN number of the book you want to return");
-        String bookISBN = scanner.next();
+    static void returnBook(String bookISBN,String bookName, String bookAuthor, String bookINFO, String userID) {
         Boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
@@ -44,16 +42,6 @@ public class Main {
             }
         }
         if (!bookFound) {
-            System.out.println("Enter the name of the book you want to return");
-            String bookName = scanner.next();
-            System.out.println("Enter the name of the author");
-            String bookAuthor = scanner.next();
-            System.out.println("Enter additional information");
-            String bookINFO = scanner.next();
-
-            System.out.println("Enter your userID");
-            String userID = scanner.next();
-
             LocalDate returnDate = LocalDate.now();
 
             transactions[transactionQuantity][0] = bookISBN;
