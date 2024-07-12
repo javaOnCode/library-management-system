@@ -1,6 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -14,8 +15,11 @@ public class Main {
     static int userQuantity = 0;
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
+    static LocalDate currentDate = LocalDate.now();
 
     public static void main(String[] args) {
+        reserveBook();
+
     }
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
@@ -217,17 +221,40 @@ public class Main {
         }
 
         System.out.println("\nUsers actively registered on the system: " + userQuantity);
-        for(int i = 0; i < userQuantity; i++){
+        for (int i = 0; i < userQuantity; i++) {
             System.out.println("\nName: " + users[i][1]);
             System.out.println("ID Number: " + users[i][0]);
             System.out.println("Email: " + users[i][2]);
         }
 
         System.out.println("\nCurrently active transactions on the system: " + transactionQuantity);
-        for(int i = 0; i < transactionQuantity; i++){
+        for (int i = 0; i < transactionQuantity; i++) {
             System.out.println("\nUser ID: " + transactions[i][1]);
             System.out.println("Book ISBN: " + transactions[i][0]);
             System.out.println("Transaction Date: " + transactions[i][2]);
+        }
+    }
+
+    static void reserveBook(String bookISBN, String userID, int reservationDuration){
+
+        boolean isBookAvailable = false;
+
+        for(int i = 0; i < bookQuantity; i++){
+            if(books[i][0].equals(bookISBN)){
+                isBookAvailable = true;
+                break;
+            }
+        }
+
+        if(isBookAvailable){
+
+            LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
+
+            System.out.printf("You have succesfully reserved this book until %s this date.", reservationEndDate);
+
+        }
+        else{
+            System.out.println("Reservation failed, please try again.");
         }
     }
 }
