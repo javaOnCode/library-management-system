@@ -17,12 +17,8 @@ public class Main {
 
     }
 
-    static void searchBooks() {
-        System.out.println("What is the method you prefer for searching books \n * Title \n * ISBN \n * Author");
-        String input = scanner.next();
+    static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
         if (input.toLowerCase().equals("title")) {
-            System.out.println("Enter the title of the book");
-            String bookTitle = scanner.next();
             for (int i = 0; i < bookQuantity; i++) {
                 if (books[i][1].equals(bookTitle)){
                     System.out.println("Here is the book you are looking for : ");
@@ -33,8 +29,6 @@ public class Main {
             }
         }
         else if (input.toLowerCase().equals("author")) {
-            System.out.println("Enter the author of the book");
-            String bookAuthor = scanner.next();
             for (int i = 0; i < bookQuantity; i++) {
                 if (books[i][2].equals(bookAuthor)){
                     System.out.println("Here is the book you are looking for : ");
@@ -45,8 +39,6 @@ public class Main {
             }
         }
         else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN") ) {
-            System.out.println("Enter the ISBN of the book");
-            String bookISBN = scanner.next();
             for (int i = 0; i < bookQuantity; i++) {
                 if (books[i][0].equals(bookISBN)){
                     System.out.println("Here is the book you are looking for : ");
@@ -58,7 +50,6 @@ public class Main {
         }
         else {
             System.out.println("We cannot find any books with this method, please try again.");
-            searchBooks();
         }
     }
 
