@@ -1,6 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -14,6 +15,7 @@ public class Main {
     static int userQuantity = 0;
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
+    static LocalDate currentDate = LocalDate.now();
 
     public static void main(String[] args) {
     }
@@ -228,6 +230,29 @@ public class Main {
             System.out.println("\nUser ID: " + transactions[i][1]);
             System.out.println("Book ISBN: " + transactions[i][0]);
             System.out.println("Transaction Date: " + transactions[i][2]);
+        }
+    }
+
+    static void reserveBook(String bookISBN, String userID, int reservationDuration){
+
+        boolean isBookAvailable = false;
+
+        for(int i = 0; i < bookQuantity; i++){
+            if(books[i][0].equals(bookISBN)){
+                isBookAvailable = true;
+                break;
+            }
+        }
+
+        if(isBookAvailable){
+
+            LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
+
+            System.out.printf("You have succesfully reserved this book until %s this date.", reservationEndDate);
+
+        }
+        else{
+            System.out.println("Reservation failed, please try again.");
         }
     }
 }
