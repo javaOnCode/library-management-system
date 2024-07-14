@@ -1,7 +1,5 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -150,6 +148,32 @@ public class Main {
         }
 
     }
+       static void checkOutBook(String ISBN,String userID) {
+        Date date = new Date();
+
+        boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equalsIgnoreCase(ISBN)) {
+                bookFound = true;
+
+                transactions[transactionQuantity][0] = books[i][0];
+                transactions[transactionQuantity][1]=userID;
+                transactions[transactionQuantity][2] = date.toString();
+                transactionQuantity++;
+
+                removeBook(books[i][0]);
+
+                System.out.println(userID + ", you have successfully checked out the book \"" + ISBN + "\".");
+                break;
+            }
+        }
+
+        if (!bookFound) {
+            System.out.println("Book \"" + ISBN + "\" not found in the library.");
+        }
+    }
+
 
 
     static void deleteUserInformation(String ID) {
