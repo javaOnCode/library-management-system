@@ -2,6 +2,8 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -16,6 +18,7 @@ public class Main {
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
     static LocalDate currentDate = LocalDate.now();
+    static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
 
@@ -253,4 +256,20 @@ public class Main {
     }
 
 
+    static void requestBook(String ISBN) {
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0] != ISBN) {
+                int daysForProvidingBook = 5;
+                LocalDate dateProvided = currentDate.plusDays(daysForProvidingBook);
+
+                System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
+                System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
+                break;
+            } else {
+                System.out.println("\nBook is already available in the library, you can borrow it right now");
+                // checkoutBook();
+                break;
+            }
+        }
+    }
 }
