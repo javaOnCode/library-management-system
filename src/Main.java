@@ -1,6 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -125,6 +122,7 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
+                truncateBooksArrayOnDeletion();
                 System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n", ISBN);
                 break;
             }
@@ -252,5 +250,16 @@ public class Main {
         }
     }
 
+    static void truncateBooksArrayOnDeletion() {
+       
+        if (bookQuantity < books.length / 2) {
+      
+            String[][] smallerBooksArray = new String[books.length / 2][4];
+            System.arraycopy(books, 0, smallerBooksArray, 0, smallerBooksArray.length);
+            books = smallerBooksArray;
+
+            System.out.println("Books array has been truncated.");
+        }
+    }
 
 }
