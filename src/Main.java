@@ -21,6 +21,44 @@ public class Main {
 
     }
 
+
+    static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
+        if (input.toLowerCase().equals("title")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][1].equals(bookTitle)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toLowerCase().equals("author")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][2].equals(bookAuthor)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN") ) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][0].equals(bookISBN)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("We cannot find any books with this method, please try again.");
+        }
+    }
+
+
     static boolean isBookAvailable(String ISBN) {
         for (int i = 0; i < bookQuantity; i++) {
             if (books[i][0].equals(ISBN)) {
@@ -53,6 +91,7 @@ public class Main {
         books = additionalBooks;
 
     }
+
 
 
     static int countTotalBooks() {
