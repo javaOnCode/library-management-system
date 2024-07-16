@@ -376,4 +376,30 @@ public class Main {
                 System.out.println("Succesfull Operation.");
         }
     }
+
+    static void generateReports(String value) {
+        switch (value) {
+            case "books":
+                countTotalBooks();
+                for (int i = 0; i < bookQuantity; i++) {
+                    System.out.print("Book " + (i + 1) + ": ");
+                    System.out.println(books[i][1]);
+                }
+                break;
+            case "users":
+                System.out.println("Total User Quantity in the system: " + userQuantity);
+                for (int i = 0; i < userQuantity; i++) {
+                    System.out.print("User " + (i + 1) + ": ");
+                    System.out.println(transactions[i][1]);
+                }
+                break;
+            case "transactions":
+                System.out.println("Total Transaction Quantity in the system: " + transactionQuantity);
+                for (int i = 0; i < transactionQuantity; i++) {
+                    System.out.print("Transaction " + (i + 1) + ": ");
+                    System.out.println(transactions[i][2]);
+                }
+                break;
+        }
+    }
 }
