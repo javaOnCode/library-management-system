@@ -2,6 +2,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -16,6 +17,7 @@ public class Main {
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
     static LocalDate currentDate = LocalDate.now();
+    static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
 
