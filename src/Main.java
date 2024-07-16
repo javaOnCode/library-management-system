@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -21,6 +22,24 @@ public class Main {
 
     }
 
+
+    static void checkBookReturnDeadline(String userID) {
+        String tempBorrowDate = "";
+        for (int i = 0; i < transactionQuantity; i++) {
+            if (userID == transactions[i][1]) {
+                tempBorrowDate = transactions[i][2];
+            }
+        }
+        LocalDate borrowDate = LocalDate.parse(tempBorrowDate, formattedDate);
+        long dayCount = ChronoUnit.DAYS.between(borrowDate, currentDate);
+
+        if (dayCount > 5) {
+            System.out.println("You did not return your borrowed book in time");
+            System.out.println("You can not get another book!");
+            System.out.println("Return your book in time please");
+        }
+
+    }
 
     static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
         if (input.toLowerCase().equals("title")) {
