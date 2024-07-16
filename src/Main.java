@@ -3,7 +3,7 @@ import org.w3c.dom.ls.LSOutput;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import java.time.LocalDate;
 
 public class Main {
 
@@ -18,6 +18,7 @@ public class Main {
     static LocalDate currentDate = LocalDate.now();
 
     public static void main(String[] args) {
+
 
     }
 
@@ -90,6 +91,28 @@ public class Main {
         bookQuantity++;
         books = additionalBooks;
 
+    }
+
+    static void returnBook(String bookISBN,String bookName, String bookAuthor, String bookINFO, String userID) {
+        Boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(bookISBN)){
+                System.out.println("This book has already been returned");
+                bookFound = true;
+            }
+        }
+        if (!bookFound) {
+            LocalDate returnDate = LocalDate.now();
+
+            transactions[transactionQuantity][0] = bookISBN;
+            transactions[transactionQuantity][1] = userID;
+            transactions[transactionQuantity][2] = returnDate.toString();
+            transactionQuantity++;
+
+            addBook(bookISBN,bookName,bookAuthor,bookINFO);
+            System.out.println("Return is succesfull");
+        }
     }
 
 
@@ -185,7 +208,6 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
-
         }
 
     }
