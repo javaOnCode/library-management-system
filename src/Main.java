@@ -257,19 +257,22 @@ public class Main {
 
 
     static void requestBook(String ISBN) {
-        for (int i = 0; i < bookQuantity; i++) {
-            if (books[i][0] != ISBN) {
-                int daysForProvidingBook = 5;
-                LocalDate dateProvided = currentDate.plusDays(daysForProvidingBook);
+        boolean bookFound = false;
 
-                System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
-                System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
-                break;
-            } else {
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(ISBN)) {
+                bookFound = true;
                 System.out.println("\nBook is already available in the library, you can borrow it right now");
                 // checkoutBook();
                 break;
             }
+        }
+        if (!bookFound) {
+            int daysForProvidingBook = 5;
+            LocalDate dateProvided = currentDate.plusDays(daysForProvidingBook);
+
+            System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
+            System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
         }
     }
 }
