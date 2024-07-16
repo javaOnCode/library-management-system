@@ -475,20 +475,17 @@ public class Main {
 
         System.out.println("Books:");
         for (int i = 0; i < bookQuantity; i++) {
-            System.out.printf("%d. ISBN: %s, Title: %s, Author: %s, Additional Info: %s%n", i + 1,
-                    books[i][0], books[i][1], books[i][2], books[i][3]);
+            System.out.printf("%d. ISBN: %s, Title: %s, Author: %s, Additional Info: %s%n", i + 1,books[i][0], books[i][1], books[i][2], books[i][3]);
         }
 
         System.out.println("Users:");
         for (int i = 0; i < userQuantity; i++) {
-            System.out.printf("%d. ID: %s, Name: %s, Email: %s, Password: %s%n", i + 1,
-                    users[i][0], users[i][1], users[i][2], users[i][3]);
+            System.out.printf("%d. ID: %s, Name: %s, Email: %s, Password: %s%n",i + 1,users[i][0], users[i][1], users[i][2], users[i][3]);
         }
 
         System.out.println("Transactions:");
         for (int i = 0; i < transactionQuantity; i++) {
-            System.out.printf("%d. ISBN: %s, User ID: %s, Date: %s%n",
-                    i + 1, transactions[i][0], transactions[i][1], transactions[i][2]);
+            System.out.printf("%d. ISBN: %s, User ID: %s, Date: %s%n",i + 1, transactions[i][0], transactions[i][1], transactions[i][2]);
         }
     }
 }
