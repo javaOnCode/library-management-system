@@ -1,6 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -347,5 +344,34 @@ public class Main {
         }
     }
 
-
+    static void succesfullTransactionInfo(String transaction) {
+        switch (transaction) {
+            case "updateBook":
+                System.out.println("Book successfully updated.");
+                break;
+            case "updateUser":
+                System.out.println("\nUser updated succesfully.");
+                break;
+            case "deleteUser":
+                System.out.println("User deleted from the system succesfully.");
+                break;
+            case "addBook":
+                System.out.println("Book added to the library succesfully.");
+                break;
+            case "removeBook":
+                System.out.println("Book removed from the library succesfully.");
+                break;
+            case "reserveBook":
+                System.out.println("Book reservation is succesfully done.");
+                break;
+            case "updateArrays":
+                System.out.println("Arrays updated succesfully.");
+                break;
+            case "requestBook":
+                System.out.println("Your specific desired book is succesfully requested.");
+                break;
+            default:
+                System.out.println("Succesfull Operation.");
+        }
+    }
 }
