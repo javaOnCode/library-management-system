@@ -128,7 +128,7 @@ public class Main {
             transactionQuantity++;
 
             addBook(bookISBN,bookName,bookAuthor,bookINFO);
-            System.out.println("Return is succesfull");
+            succesfullTransactionInfo("returnBook");
         }
     }
 
@@ -204,7 +204,8 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n", ISBN);
+                succesfullTransactionInfo("removeBook");
+                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library.\n", ISBN);
                 break;
             }
         }
@@ -223,6 +224,7 @@ public class Main {
             books[bookQuantity][3] = additionalInformation;
 
             bookQuantity++;
+            succesfullTransactionInfo("addBook");
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
         }
@@ -248,6 +250,7 @@ public class Main {
 
             users[userQuantity - 1] = null;
             userQuantity--;
+            succesfullTransactionInfo("deleteUser");
             System.out.printf("\n\"%s\" - user with the given ID is deleted from the system.", ID);
             break;
         }
@@ -274,7 +277,7 @@ public class Main {
                 books[i][2] = newAuthor;
                 books[i][3] = newInfo;
 
-                System.out.println("Book succesfully updated.");
+                succesfullTransactionInfo("updateBook");
             }
         }
         if (!bookFound) {
@@ -298,7 +301,7 @@ public class Main {
                 users[i][2] = newEmail;
                 users[i][3] = newPassword;
 
-                System.out.println("\nUser updated succesfully.");
+               succesfullTransactionInfo("updateUser");
             }
         }
         if (!userFound) {
@@ -347,6 +350,7 @@ public class Main {
             LocalDate pickUpDeadline = currentDate.plusDays(daysTillCheckout);// in 3 days, u have to take it from library
             LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
 
+            succesfullTransactionInfo("reserveBook");
             System.out.printf("You have succesfully reserved this book until this date - \"%s\"\n", reservationEndDate.format(formattedDate));
             System.out.printf("You have to pick up the book  until this date - \"%s\"\n", pickUpDeadline.format(formattedDate));
 
@@ -389,6 +393,9 @@ public class Main {
                 break;
             case "requestBook":
                 System.out.println("Your specific desired book is succesfully requested.");
+                break;
+            case "returnBook":
+                System.out.println("Book returned to the library succesfully.");
                 break;
             default:
                 System.out.println("Succesfull Operation.");
@@ -437,6 +444,7 @@ public class Main {
             int daysForProvidingBook = 5;
             LocalDate dateProvided = currentDate.plusDays(daysForProvidingBook);
 
+            succesfullTransactionInfo("requestBook");
             System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
             System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
         }
