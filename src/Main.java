@@ -1,11 +1,7 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
+import java.time.LocalDate;
 
 public class Main {
 
@@ -22,7 +18,46 @@ public class Main {
 
     public static void main(String[] args) {
 
+
     }
+
+
+    static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
+        if (input.toLowerCase().equals("title")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][1].equals(bookTitle)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toLowerCase().equals("author")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][2].equals(bookAuthor)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN") ) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][0].equals(bookISBN)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("We cannot find any books with this method, please try again.");
+        }
+    }
+
 
     static boolean isBookAvailable(String ISBN) {
         for (int i = 0; i < bookQuantity; i++) {
@@ -56,6 +91,29 @@ public class Main {
         books = additionalBooks;
 
     }
+
+    static void returnBook(String bookISBN,String bookName, String bookAuthor, String bookINFO, String userID) {
+        Boolean bookFound = false;
+
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(bookISBN)){
+                System.out.println("This book has already been returned");
+                bookFound = true;
+            }
+        }
+        if (!bookFound) {
+            LocalDate returnDate = LocalDate.now();
+
+            transactions[transactionQuantity][0] = bookISBN;
+            transactions[transactionQuantity][1] = userID;
+            transactions[transactionQuantity][2] = returnDate.toString();
+            transactionQuantity++;
+
+            addBook(bookISBN,bookName,bookAuthor,bookINFO);
+            System.out.println("Return is succesfull");
+        }
+    }
+
 
 
     static int countTotalBooks() {
@@ -149,7 +207,6 @@ public class Main {
             bookQuantity++;
         } else {
             System.out.println("\nOur shelves are full, so that we can't add the new one...");
-
         }
 
     }
@@ -254,8 +311,99 @@ public class Main {
             System.out.println("Transaction Date: " + transactions[i][2]);
         }
     }
+  
+    static void reserveBook(String bookISBN, String userID, int reservationDuration){
 
+        boolean isBookAvailable = false;
 
+        for(int i = 0; i < bookQuantity; i++){
+            if(books[i][0].equals(bookISBN)){
+                isBookAvailable = true;
+                break;
+            }
+        }
+
+        if(isBookAvailable){
+
+            int daysTillCheckout = 3;
+            LocalDate pickUpDeadline = currentDate.plusDays(daysTillCheckout);// in 3 days, u have to take it from library
+            LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
+
+            System.out.printf("You have succesfully reserved this book until this date - \"%s\"\n", reservationEndDate.format(formattedDate));
+            System.out.printf("You have to pick up the book  until this date - \"%s\"\n", pickUpDeadline.format(formattedDate));
+
+            LocalDate userPickUpDate = currentDate.plusDays(4);
+
+            if(userPickUpDate.isBefore(pickUpDeadline) || userPickUpDate.isEqual(pickUpDeadline)){
+                System.out.println("You have picked up the book on time.");
+            }
+            else{
+                System.out.println("You failed to pick up the book on time, Reservation failed.");
+            }
+        }
+        else{
+            System.out.println("Reservation failed, please try again.");
+        }
+    }
+
+    static void succesfullTransactionInfo(String transaction) {
+        switch (transaction) {
+            case "updateBook":
+                System.out.println("Book successfully updated.");
+                break;
+            case "updateUser":
+                System.out.println("\nUser updated succesfully.");
+                break;
+            case "deleteUser":
+                System.out.println("User deleted from the system succesfully.");
+                break;
+            case "addBook":
+                System.out.println("Book added to the library succesfully.");
+                break;
+            case "removeBook":
+                System.out.println("Book removed from the library succesfully.");
+                break;
+            case "reserveBook":
+                System.out.println("Book reservation is succesfully done.");
+                break;
+            case "updateArrays":
+                System.out.println("Arrays updated succesfully.");
+                break;
+            case "requestBook":
+                System.out.println("Your specific desired book is succesfully requested.");
+                break;
+            default:
+                System.out.println("Succesfull Operation.");
+        }
+    }
+
+    static void generateReports(String value) {
+        switch (value) {
+            case "books":
+                countTotalBooks();
+                for (int i = 0; i < bookQuantity; i++) {
+                    System.out.print("Book " + (i + 1) + ": ");
+                    System.out.println(books[i][1]);
+                }
+                break;
+            case "users":
+                System.out.println("Total User Quantity in the system: " + userQuantity);
+                for (int i = 0; i < userQuantity; i++) {
+                    System.out.print("User " + (i + 1) + ": ");
+                    System.out.println(transactions[i][1]);
+                }
+                break;
+            case "transactions":
+                System.out.println("Total Transaction Quantity in the system: " + transactionQuantity);
+                for (int i = 0; i < transactionQuantity; i++) {
+                    System.out.print("Transaction " + (i + 1) + ": ");
+                    System.out.println(transactions[i][2]);
+                }
+                break;
+        }
+    }
+  
+  
     static void requestBook(String ISBN) {
         boolean bookFound = false;
 
