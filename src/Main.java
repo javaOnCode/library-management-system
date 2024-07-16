@@ -122,8 +122,11 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                truncateBooksArrayOnDeletion();
+
                 System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n", ISBN);
+            
+                truncateBooksArrayOnDeletion(ISBN);
+              
                 break;
             }
         }
@@ -250,16 +253,26 @@ public class Main {
         }
     }
 
-    static void truncateBooksArrayOnDeletion() {
-       
-        if (bookQuantity < books.length / 2) {
-      
-            String[][] smallerBooksArray = new String[books.length / 2][4];
-            System.arraycopy(books, 0, smallerBooksArray, 0, smallerBooksArray.length);
-            books = smallerBooksArray;
+    static void truncateBooksArrayOnDeletion(String ISBN) {
 
-            System.out.println("Books array has been truncated.");
+        String[][] newBooksArray = new String[books.length][4];
+        int newIndex=0;
+
+        for(int i=0;i<bookQuantity;i++){
+            if(!books[i][0].equals(ISBN)){
+                newBooksArray[newIndex]=books[i];
+                newIndex++;
+
+            }
         }
+        books= new String[newIndex][4];
+        System.arraycopy(newBooksArray, 0, books, 0, newIndex);
+
+        bookQuantity=newIndex;
+       
+
+        System.out.println("Books array has been truncated.");
+        
     }
 
 }
