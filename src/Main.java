@@ -371,34 +371,34 @@ public class Main {
     static void succesfullTransactionInfo(String transaction) {
         switch (transaction) {
             case "updateBook":
-                System.out.println("Book successfully updated.");
+                System.out.println("\nBook successfully updated.");
                 break;
             case "updateUser":
                 System.out.println("\nUser updated succesfully.");
                 break;
             case "deleteUser":
-                System.out.println("User deleted from the system succesfully.");
+                System.out.println("\nUser deleted from the system succesfully.");
                 break;
             case "addBook":
-                System.out.println("Book added to the library succesfully.");
+                System.out.println("\nBook added to the library succesfully.");
                 break;
             case "removeBook":
-                System.out.println("Book removed from the library succesfully.");
+                System.out.println("\nBook removed from the library succesfully.");
                 break;
             case "reserveBook":
-                System.out.println("Book reservation is succesfully done.");
+                System.out.println("\nBook reservation is succesfully done.");
                 break;
             case "updateArrays":
-                System.out.println("Arrays updated succesfully.");
+                System.out.println("\nArrays updated succesfully.");
                 break;
             case "requestBook":
-                System.out.println("Your specific desired book is succesfully requested.");
+                System.out.println("\nYour specific desired book is succesfully requested.");
                 break;
             case "returnBook":
-                System.out.println("Book returned to the library succesfully.");
+                System.out.println("\nBook returned to the library succesfully.");
                 break;
             default:
-                System.out.println("Succesfull Operation.");
+                System.out.println("\nSuccesfull Operation.");
         }
     }
 
