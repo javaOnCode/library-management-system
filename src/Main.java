@@ -312,6 +312,40 @@ public class Main {
             System.out.println("Transaction Date: " + transactions[i][2]);
         }
     }
+  
+    static void reserveBook(String bookISBN, String userID, int reservationDuration){
+
+        boolean isBookAvailable = false;
+
+        for(int i = 0; i < bookQuantity; i++){
+            if(books[i][0].equals(bookISBN)){
+                isBookAvailable = true;
+                break;
+            }
+        }
+
+        if(isBookAvailable){
+
+            int daysTillCheckout = 3;
+            LocalDate pickUpDeadline = currentDate.plusDays(daysTillCheckout);// in 3 days, u have to take it from library
+            LocalDate reservationEndDate = currentDate.plusDays(reservationDuration);
+
+            System.out.printf("You have succesfully reserved this book until this date - \"%s\"\n", reservationEndDate.format(formattedDate));
+            System.out.printf("You have to pick up the book  until this date - \"%s\"\n", pickUpDeadline.format(formattedDate));
+
+            LocalDate userPickUpDate = currentDate.plusDays(4);
+
+            if(userPickUpDate.isBefore(pickUpDeadline) || userPickUpDate.isEqual(pickUpDeadline)){
+                System.out.println("You have picked up the book on time.");
+            }
+            else{
+                System.out.println("You failed to pick up the book on time, Reservation failed.");
+            }
+        }
+        else{
+            System.out.println("Reservation failed, please try again.");
+        }
+    }
 
 
 }
