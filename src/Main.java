@@ -1,4 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
+
+import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -12,9 +15,67 @@ public class Main {
     static int userQuantity = 0;
     static int transactionQuantity = 0;
     static Scanner scanner = new Scanner(System.in);
+    static LocalDate currentDate = LocalDate.now();
 
     public static void main(String[] args) {
- 
+
+
+    }
+
+
+    static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
+        if (input.toLowerCase().equals("title")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][1].equals(bookTitle)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toLowerCase().equals("author")) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][2].equals(bookAuthor)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN") ) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][0].equals(bookISBN)){
+                    System.out.println("Here is the book you are looking for : ");
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print("\n" + books[i][j]);
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("We cannot find any books with this method, please try again.");
+        }
+    }
+
+
+    static boolean isBookAvailable(String ISBN) {
+        for (int i = 0; i < bookQuantity; i++) {
+            if (books[i][0].equals(ISBN)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static boolean isBookAvailableForReturning(String ISBN) {
+        for (int i = 0; i < transactionQuantity; i++) {
+            if (transactions[i][0].equals(ISBN)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
@@ -83,8 +144,8 @@ public class Main {
             System.out.println("Oops, sth wrong happened while finding books.");
         }
     }
-  
-  
+
+
     static void displayBookDetails() {
 
         System.out.print("\nEnter the title of the book that you're interested for detailed information: ");
@@ -107,8 +168,7 @@ public class Main {
             System.out.println("Oops, Book Not Found!");
         }
     }
-  
-  
+
 
     static void removeBook(String ISBN) {
         if (bookQuantity == 0) {
@@ -118,25 +178,25 @@ public class Main {
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
-            if(books[i][0].equals(ISBN)){
+            if (books[i][0].equals(ISBN)) {
                 bookFound = true;
 
-                for(int j = i; j < bookQuantity - 1; j++){
+                for (int j = i; j < bookQuantity - 1; j++) {
                     books[j] = books[j + 1];
                 }
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n",ISBN);
+                System.out.printf("\"%s\" - book with specific ISBN is deleted from the library succesfully.\n", ISBN);
                 break;
             }
         }
 
-        if(!bookFound){
+        if (!bookFound) {
             System.out.println("Book Not Found!");
         }
     }
-  
+
 
     static void addBook(String ISBN, String title, String author, String additionalInformation) {
         if (bookQuantity < INDEX) {
@@ -151,21 +211,21 @@ public class Main {
         }
 
     }
-  
-  
-    static void deleteUserInformation(String ID){
-        if(userQuantity == 0){
+
+
+    static void deleteUserInformation(String ID) {
+        if (userQuantity == 0) {
             System.out.println("\nThere is no user registered on the system.");
         }
 
         boolean userFound = false;
 
-        for(int i = 0; i < userQuantity; i++){
-            if(users[i][0].equals(ID)){
+        for (int i = 0; i < userQuantity; i++) {
+            if (users[i][0].equals(ID)) {
                 userFound = true;
             }
 
-            for(int j = i; j < userQuantity - 1; j++){
+            for (int j = i; j < userQuantity - 1; j++) {
                 users[j] = users[j + 1];
             }
 
@@ -175,13 +235,12 @@ public class Main {
             break;
         }
 
-        if(!userFound){
+        if (!userFound) {
             System.out.println("\nOops, user not found.");
         }
     }
-  
-  
-  
+
+
     static void updateBook(String newISBN, String newTitle, String newAuthor, String newInfo) {
 
         System.out.print("Please enter the ISBN of the book you would like to update here: ");
@@ -201,20 +260,20 @@ public class Main {
                 System.out.println("Book succesfully updated.");
             }
         }
-        if(!bookFound){
+        if (!bookFound) {
             System.out.println("Such book is not available in the library.");
         }
     }
-    
-    static void updatePatronInfo(String newID, String newUserName, String newEmail, String newPassword){
+
+    static void updatePatronInfo(String newID, String newUserName, String newEmail, String newPassword) {
 
         System.out.print("Please enter the ID of the user you would like to update: ");
         String IDForUpdate = scanner.nextLine();
 
         boolean userFound = false;
 
-        for(int i = 0; i < userQuantity; i++){
-            if(users[i][0].equals(IDForUpdate)){
+        for (int i = 0; i < userQuantity; i++) {
+            if (users[i][0].equals(IDForUpdate)) {
                 userFound = true;
 
                 users[i][0] = newID;
@@ -225,9 +284,34 @@ public class Main {
                 System.out.println("\nUser updated succesfully.");
             }
         }
-        if(!userFound){
+        if (!userFound) {
             System.out.println("\nOops, user with these credentials is not found.");
         }
     }
-  
+
+    static void initialArrays() {
+        countTotalBooks();
+        for (int i = 0; i < bookQuantity; i++) {
+            System.out.println("\nTitle: " + books[i][1]);
+            System.out.println("ISBN: " + books[i][0]);
+            System.out.println("Author: " + books[i][2]);
+            System.out.println("Additional Information: " + books[i][3]);
+        }
+
+        System.out.println("\nUsers actively registered on the system: " + userQuantity);
+        for (int i = 0; i < userQuantity; i++) {
+            System.out.println("\nName: " + users[i][1]);
+            System.out.println("ID Number: " + users[i][0]);
+            System.out.println("Email: " + users[i][2]);
+        }
+
+        System.out.println("\nCurrently active transactions on the system: " + transactionQuantity);
+        for (int i = 0; i < transactionQuantity; i++) {
+            System.out.println("\nUser ID: " + transactions[i][1]);
+            System.out.println("Book ISBN: " + transactions[i][0]);
+            System.out.println("Transaction Date: " + transactions[i][2]);
+        }
+    }
+
+
 }
