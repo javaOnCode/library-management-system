@@ -18,17 +18,46 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        // Test case
-        addBook("123456789", "Book Title 1", "Author 1", "Additional Info 1");
-        addBook("987654321", "Book Title 2", "Author 2", "Additional Info 2");
-        addBook("1112131415", "Book Title 3", "Author 1", "Additional Info 3");
 
-        transactions[0][0] = "123456789";
-        transactions[0][1] = "user1";
-        transactions[0][2] = currentDate.minusDays(2).format(formattedDate);
-        transactionQuantity++;
+    }
 
-        generateBookRecommendations("user1");
+    static void createUser(){
+        if (userQuantity < INDEX) {
+            System.out.println("Enter your user ID: ");
+            String id = scanner.nextLine();
+
+            System.out.println("Enter your user name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Enter your user email: ");
+            String email = scanner.nextLine();
+
+            System.out.println("Enter your user password: ");
+            String password = scanner.nextLine();
+
+            users[userQuantity][0] = id;
+            users[userQuantity][1] = name;
+            users[userQuantity][2] = email;
+            users[userQuantity][3] = password;
+            userQuantity++;
+
+            System.out.println("User created successfully.");
+        } else {
+            System.out.println("\nUser array is full, cannot add more users.");
+        }
+    }
+    static boolean login(){
+        System.out.println("Enter your email: ");
+        String email = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+
+        for (int i=0; i<userQuantity; i++){
+            if(users[i][2].equals(email) && users[i][3].equals(password)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
