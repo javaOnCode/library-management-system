@@ -354,10 +354,16 @@ public class Main {
             System.out.printf("You have succesfully reserved this book until this date - \"%s\"\n", reservationEndDate.format(formattedDate));
             System.out.printf("You have to pick up the book  until this date - \"%s\"\n", pickUpDeadline.format(formattedDate));
 
-            LocalDate userPickUpDate = currentDate.plusDays(4);
+            LocalDate userPickUpDate = currentDate.plusDays(2);
 
             if(userPickUpDate.isBefore(pickUpDeadline) || userPickUpDate.isEqual(pickUpDeadline)){
                 System.out.println("You have picked up the book on time.");
+                if(transactionQuantity < INDEX){
+                    transactions[transactionQuantity][0] = bookISBN;
+                    transactions[transactionQuantity][1] = userID;
+                    transactions[transactionQuantity][2] = currentDate.toString();
+                    transactionQuantity++;
+                }
             }
             else{
                 System.out.println("You failed to pick up the book on time, Reservation failed.");
