@@ -400,6 +400,8 @@ public class Main {
             default:
                 System.out.println("\nSuccesfull Operation.");
         }
+        updateArrays();
+        displayCurrentState();
     }
 
     static void generateReports(String value) {
@@ -447,6 +449,43 @@ public class Main {
             succesfullTransactionInfo("requestBook");
             System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
             System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
+        }
+    }
+
+    static void updateArrays() {
+        if (bookQuantity == books.length) {
+            String[][] newBooksArray = new String[INDEX * 2][4];
+            System.arraycopy(books, 0, newBooksArray, 0, books.length);
+            books = newBooksArray;
+        }
+        if (userQuantity == users.length) {
+            String[][] newUsersArray = new String[INDEX * 2][4];
+            System.arraycopy(users, 0, newUsersArray, 0, users.length);
+            users = newUsersArray;
+        }
+        if (transactionQuantity == transactions.length) {
+            String[][] newTransactionsArray = new String[INDEX * 2][4];
+            System.arraycopy(transactions, 0, newTransactionsArray, 0, transactions.length);
+            transactions = newTransactionsArray;
+        }
+    }
+
+    static void displayCurrentState() {
+        System.out.println("\nCurrent state of the library:");
+
+        System.out.println("Books:");
+        for (int i = 0; i < bookQuantity; i++) {
+            System.out.printf("%d. ISBN: %s, Title: %s, Author: %s, Additional Info: %s%n", i + 1,books[i][0], books[i][1], books[i][2], books[i][3]);
+        }
+
+        System.out.println("Users:");
+        for (int i = 0; i < userQuantity; i++) {
+            System.out.printf("%d. ID: %s, Name: %s, Email: %s, Password: %s%n",i + 1,users[i][0], users[i][1], users[i][2], users[i][3]);
+        }
+
+        System.out.println("Transactions:");
+        for (int i = 0; i < transactionQuantity; i++) {
+            System.out.printf("%d. ISBN: %s, User ID: %s, Date: %s%n",i + 1, transactions[i][0], transactions[i][1], transactions[i][2]);
         }
     }
 }
