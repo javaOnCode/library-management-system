@@ -14,9 +14,65 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        while (true) {
+            showMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    login();
+                    break;
+                case 2:
+                    addBook();
+                    break;
+                case 3:
+                    removeBook();
+                    break;
+                case 4:
+                    updateBook();
+                    break;
+                case 5:
+                    viewAvailableBooks();
+                    break;
+                case 6:
+                    displayBookDetails();
+                    break;
+                case 7:
+                    countTotalBooks();
+                    break;
+                case 10:
+                    deleteUserInformation();
+                    break;
+                case 11:
+                    updatePatronInfo();
+                    break;
+
+                case 0:
+                    System.out.println("Exiting the system.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
 
 
     }
+    static void showMenu() {
+        System.out.println("\nLibrary Management System Menu");
+        System.out.println("1. Login");
+        System.out.println("2. Add a Book");
+        System.out.println("3. Remove a Book");
+        System.out.println("4. Update Book Information");
+        System.out.println("5. View Available Books");
+        System.out.println("6. Display Book Details");
+        System.out.println("7. Count Total Books");
+        System.out.println("10. Delete User Information");
+        System.out.println("11. Update Patron Information");
+        System.out.println("0. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
 
     static void extendBooksArrayOnAddition(String newBookISBN, String newBookTitle, String newBookAuthor, String newBookAdditionalInformation) {
 
