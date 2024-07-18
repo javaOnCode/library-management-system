@@ -18,18 +18,36 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        while (true) {
-            showMenu();
-          
+        createUser("1","user","user.mail" ,"123");
+        Boolean isLogin = login();
+        addBook("979", "1984", "George Orwell", "Dystopian novel published in 1949");
+        addBook("980", "To Kill a Mockingbird", "Harper Lee", "Pulitzer Prize-winning novel published in 1960");
+        addBook("981", "The Great Gatsby", "F. Scott Fitzgerald", "Classic American novel published in 1925");
+        addBook("982", "Pride and Prejudice", "Jane Austen", "Romantic novel published in 1813");
+        addBook("983", "The Catcher in the Rye", "J.D. Salinger", "Controversial novel published in 1951");
+        addBook("984", "Moby Dick", "Herman Melville", "Epic novel published in 1851");
+        addBook("985", "War and Peace", "Leo Tolstoy", "Historical novel published in 1869");
+        addBook("986", "The Odyssey", "Homer", "Ancient Greek epic poem");
+        addBook("987", "Crime and Punishment", "Fyodor Dostoevsky", "Psychological novel published in 1866");
+        addBook("988", "Brave New World", "Aldous Huxley", "Dystopian novel published in 1932");
+        addBook("989", "Animal Farm", "George Orwell", "Political satire novel published in 1945");
 
+
+        if (isLogin) {
+           showMenu();
         }
+        else {
+            System.out.println("Please try to login again");
+            login();
+        }
+
 
     }
     static void showMenu() {
         System.out.println("\nWelcome to our Library!");
         System.out.println("Please choose the operation you would like to implement due to its index.");
         System.out.println("\n1. Register new user");
-        System.out.println("2. Login to the system");
+        System.out.println("2. Login");
         System.out.println("3. Checkout Book");
         System.out.println("4. Return Book");
         System.out.println("5. Reserve Book");
