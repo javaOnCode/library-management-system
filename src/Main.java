@@ -256,7 +256,7 @@ public class Main {
             bookQuantity++;
             succesfullTransactionInfo("addBook");
         } else {
-            System.out.println("\nOur shelves are full, so that we can't add the new one...");
+            extendBooksArrayOnAddition(ISBN,title,author,additionalInformation);
         }
 
     }
