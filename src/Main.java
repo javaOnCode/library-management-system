@@ -465,9 +465,9 @@ public class Main {
                 break;
         }
     }
-  
-  
-    static void requestBook(String ISBN) {
+
+
+    static void requestBook(String ISBN, String ID) {
         boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
@@ -484,7 +484,14 @@ public class Main {
 
             succesfullTransactionInfo("requestBook");
             System.out.println("\nThe book with the given specification is requested and library personal will deliver it for you.");
-            System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.", daysForProvidingBook, dateProvided.format(formattedDate));
+            System.out.printf("In %d days, \"%s\" - by this date, you will be given the desired book. Thanks for your patience.\n", daysForProvidingBook, dateProvided.format(formattedDate));
+            if(transactionQuantity < INDEX){
+                transactions[transactionQuantity][0] = ISBN;
+                transactions[transactionQuantity][1] = ID;
+                transactions[transactionQuantity][2] = dateProvided.toString();
+                transactionQuantity++;
+
+            }
         }
     }
 
