@@ -18,17 +18,7 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        // Test case
-        addBook("123456789", "Book Title 1", "Author 1", "Additional Info 1");
-        addBook("987654321", "Book Title 2", "Author 2", "Additional Info 2");
-        addBook("1112131415", "Book Title 3", "Author 1", "Additional Info 3");
 
-        transactions[0][0] = "123456789";
-        transactions[0][1] = "user1";
-        transactions[0][2] = currentDate.minusDays(2).format(formattedDate);
-        transactionQuantity++;
-
-        generateBookRecommendations("user1");
     }
 
 
