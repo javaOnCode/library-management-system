@@ -19,22 +19,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+
     }
 
-    static void createUser(){
+    static void createUser(String id, String name, String email, String password) {
         if (userQuantity < INDEX) {
-            System.out.println("Enter your user ID: ");
-            String id = scanner.nextLine();
-
-            System.out.println("Enter your user name: ");
-            String name = scanner.nextLine();
-
-            System.out.println("Enter your user email: ");
-            String email = scanner.nextLine();
-
-            System.out.println("Enter your user password: ");
-            String password = scanner.nextLine();
-
             users[userQuantity][0] = id;
             users[userQuantity][1] = name;
             users[userQuantity][2] = email;
@@ -46,6 +35,7 @@ public class Main {
             System.out.println("\nUser array is full, cannot add more users.");
         }
     }
+
     static boolean login(){
         System.out.println("Enter your email: ");
         String email = scanner.nextLine();
@@ -54,9 +44,11 @@ public class Main {
 
         for (int i=0; i<userQuantity; i++){
             if(users[i][2].equals(email) && users[i][3].equals(password)){
+                System.out.println("Login successful. Welcome, " + users[i][1] + "!");
                 return true;
             }
         }
+        System.out.println("Login failed. Invalid email or password.");
         return false;
     }
 
