@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
 
 
@@ -149,7 +148,6 @@ public class Main {
 
     }
        static void checkOutBook(String ISBN,String userID) {
-        Date date = new Date();
 
         boolean bookFound = false;
 
@@ -159,7 +157,7 @@ public class Main {
 
                 transactions[transactionQuantity][0] = books[i][0];
                 transactions[transactionQuantity][1]=userID;
-                transactions[transactionQuantity][2] = date.toString();
+                transactions[transactionQuantity][2] = currentDate.toString();
                 transactionQuantity++;
 
                 removeBook(books[i][0]);
