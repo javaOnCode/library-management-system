@@ -453,7 +453,7 @@ public class Main {
                 System.out.println("Total User Quantity in the system: " + userQuantity);
                 for (int i = 0; i < userQuantity; i++) {
                     System.out.print("User " + (i + 1) + ": ");
-                    System.out.println(transactions[i][1]);
+                    System.out.println(users[i][1]);
                 }
                 break;
             case "transactions":
