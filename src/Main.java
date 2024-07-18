@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
@@ -17,7 +18,6 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-
 
     }
 
@@ -40,42 +40,72 @@ public class Main {
 
     }
 
-    static void searchBooks(String input,String bookTitle,String bookAuthor,String bookISBN) {
+    static void searchBooks(String input, String bookTitle, String bookAuthor, String bookISBN) {
         if (input.toLowerCase().equals("title")) {
             for (int i = 0; i < bookQuantity; i++) {
-                if (books[i][1].equals(bookTitle)){
+                if (books[i][1].equals(bookTitle)) {
                     System.out.println("Here is the book you are looking for : ");
                     for (int j = 0; j < 4; j++) {
                         System.out.print("\n" + books[i][j]);
                     }
                 }
             }
-        }
-        else if (input.toLowerCase().equals("author")) {
+        } else if (input.toLowerCase().equals("author")) {
             for (int i = 0; i < bookQuantity; i++) {
-                if (books[i][2].equals(bookAuthor)){
+                if (books[i][2].equals(bookAuthor)) {
                     System.out.println("Here is the book you are looking for : ");
                     for (int j = 0; j < 4; j++) {
                         System.out.print("\n" + books[i][j]);
                     }
                 }
             }
-        }
-        else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN") ) {
+        } else if (input.toUpperCase().equals("ISBN") || input.toUpperCase().equals("İSBN")) {
             for (int i = 0; i < bookQuantity; i++) {
-                if (books[i][0].equals(bookISBN)){
+                if (books[i][0].equals(bookISBN)) {
                     System.out.println("Here is the book you are looking for : ");
                     for (int j = 0; j < 4; j++) {
                         System.out.print("\n" + books[i][j]);
                     }
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("We cannot find any books with this method, please try again.");
         }
     }
 
+    static void generateBookRecommendations(String userID) {
+        String lastBookISBN = null;
+        String lastBookAuthor = null;
+
+        for (int i = 0; i < transactionQuantity; i++) {
+            if (transactions[i][1].equals(userID)) {
+                lastBookISBN = transactions[i][0];
+                break;
+            }
+        }
+        if (lastBookISBN != null) {
+            for (int i = 0; i < bookQuantity; i++) {
+                lastBookAuthor = books[i][2];
+                break;
+            }
+        }
+        if (lastBookAuthor != null) {
+            for (int i = 0; i < bookQuantity; i++) {
+                if (books[i][2].equals(lastBookAuthor) && !books[i][0].equals(lastBookISBN)) {
+                    System.out.println("Recommended book: " + books[i][1] + " Author: " + books[i][2]);
+                    return;
+                }
+            }
+        }
+
+
+
+            Random random = new Random();
+            int randomIndex = random.nextInt(bookQuantity);
+            System.out.println("Recommended book: " + books[randomIndex][1] + " Author: " + books[randomIndex][2]);
+
+
+    }
 
     static boolean isBookAvailable(String ISBN) {
         for (int i = 0; i < bookQuantity; i++) {
