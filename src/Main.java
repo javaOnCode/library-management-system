@@ -20,63 +20,193 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             showMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+          
 
-            switch (choice) {
-                case 1:
-                    login();
-                    break;
-                case 2:
-                    addBook();
-                    break;
-                case 3:
-                    removeBook();
-                    break;
-                case 4:
-                    updateBook();
-                    break;
-                case 5:
-                    viewAvailableBooks();
-                    break;
-                case 6:
-                    displayBookDetails();
-                    break;
-                case 7:
-                    countTotalBooks();
-                    break;
-                case 10:
-                    deleteUserInformation();
-                    break;
-                case 11:
-                    updatePatronInfo();
-                    break;
-
-                case 0:
-                    System.out.println("Exiting the system.");
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
         }
-
 
     }
     static void showMenu() {
-        System.out.println("\nLibrary Management System Menu");
-        System.out.println("1. Login");
-        System.out.println("2. Add a Book");
-        System.out.println("3. Remove a Book");
-        System.out.println("4. Update Book Information");
-        System.out.println("5. View Available Books");
-        System.out.println("6. Display Book Details");
-        System.out.println("7. Count Total Books");
-        System.out.println("10. Delete User Information");
-        System.out.println("11. Update Patron Information");
+        System.out.println("\nWelcome to our Library!");
+        System.out.println("Please choose the operation you would like to implement due to its index.");
+        System.out.println("\n1. Register new user");
+        System.out.println("2. Login to the system");
+        System.out.println("3. Checkout Book");
+        System.out.println("4. Return Book");
+        System.out.println("5. Reserve Book");
+        System.out.println("6. Request New Book");
+        System.out.println("7. Update Book Information");
+        System.out.println("8. Add Book to the library");
+        System.out.println("9. Remove book from the library");
+        System.out.println("10. View Available Books");
+        System.out.println("11. Display book details");
+        System.out.println("12. Count Total Books");
+        System.out.println("13. Generate Book Recommendations");
+        System.out.println("14. Generate Reports(books,users,transactions)");
+        System.out.println("15. Delete User Information");
+        System.out.println("16. Update Patron Information");
         System.out.println("0. Exit");
-        System.out.print("Enter your choice: ");
-    }
+        System.out.print("\nEnter your choice here: ");
 
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter user ID: ");
+                String IDForRegister = scanner.nextLine();
+                System.out.print("Enter user name: ");
+                String userNameForRegister = scanner.nextLine();
+                System.out.print("Enter email: ");
+                String emailForRegister = scanner.nextLine();
+                System.out.print("Enter password: ");
+                String passwordForRegister = scanner.nextLine();
+
+                createUser(IDForRegister, userNameForRegister, emailForRegister, passwordForRegister);
+                break;
+
+            case 2:
+                login();
+                break;
+
+            case 3:
+            System.out.print("Enter the ISBN of the book you would like to check out: "); 
+            String ISBNforCheckout = scanner.nextLine();
+
+            System.out.print("Enter user ID: ");
+            String IDforCheckout = scanner.nextLine();
+
+               checkOutBook(ISBNforCheckout, IDforCheckout);
+
+                break;
+            case 4:
+                System.out.print("Enter the ISBN of the book you would like to return: ");
+                String ISBNForReturn = scanner.nextLine();
+
+                System.out.print("Enter user ID: ");
+                String IDForReturn = scanner.nextLine();
+
+                returnBook(ISBNForReturn, IDForReturn);
+                break;
+            case 5:
+                System.out.print("Enter the ISBN of the book you would like to reserve: ");
+                String ISBNForReserve = scanner.nextLine();
+
+                System.out.print("Enter user ID: ");
+                String IDForReserve = scanner.nextLine();
+
+                System.out.print("Enter reservation duration: ");
+                int reservationDurationForReserve = scanner.nextInt();
+                scanner.nextLine();
+
+                reserveBook(ISBNForReserve, IDForReserve, reservationDurationForReserve);
+                break;
+            case 6:
+                System.out.print("Enter the ISBN of the book you would like to request: ");
+                String ISBNForRequest = scanner.nextLine();
+                System.out.print("Enter user ID: ");
+                String IDForRequest = scanner.nextLine();
+
+                requestBook(ISBNForRequest, IDForRequest);
+                break;
+            case 7:
+                System.out.print("Enter new ISBN for update: ");
+                String ISBNForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new title for update: ");
+                String titleForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new Author for update: ");
+                String authorForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new Additional Information for update: ");
+                String additionalInfoForUpdate = scanner.nextLine();
+
+
+                updateBook(ISBNForUpdate, titleForUpdate, authorForUpdate, additionalInfoForUpdate);
+                break;
+
+            case 8:
+                System.out.print("Enter ISBN for adding to the library: ");
+                String ISBNForAddition = scanner.nextLine();
+
+                System.out.print("Enter title of the book:  ");
+                String titleForAddition = scanner.nextLine();
+
+                System.out.print("Enter author of the book: ");
+                String authorForAddition = scanner.nextLine();
+
+                System.out.print("Enter information about the book: ");
+                String infoForAddition = scanner.nextLine();
+
+                addBook(ISBNForAddition, titleForAddition, authorForAddition, infoForAddition);
+                break;
+
+            case 9:
+                System.out.print("Enter ISBN for removing book: ");
+                String ISBNForRemoving = scanner.nextLine();
+
+                removeBook(ISBNForRemoving);
+                break;
+
+            case 10:
+                viewAvailableBooks();
+                break;
+
+            case 11:
+                displayBookDetails();
+                break;
+
+            case 12:
+                countTotalBooks();
+                break;
+
+            case 13:
+                System.out.print("Enter user ID for book recommendation: ");
+                String IDForRecommendation = scanner.nextLine();
+
+                generateBookRecommendations(IDForRecommendation);
+                break;
+
+            case 14:
+                System.out.print("Which of these would you like to generate? - books, users, transactions: ");
+                String valueForGeneration = scanner.nextLine();
+
+                generateReports(valueForGeneration);
+                break;
+
+            case 15:
+                System.out.print("Enter user ID for deleting from the system: ");
+                String IDForDeletion = scanner.nextLine();
+
+                deleteUserInformation(IDForDeletion);
+                break;
+
+            case 16:
+                System.out.print("Enter new user ID for updating an existing user: ");
+                String userIDForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new userName: ");
+                String userNameForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new email address: ");
+                String emailForUpdate = scanner.nextLine();
+
+                System.out.print("Enter new password: ");
+                String passwordForUpdate = scanner.nextLine();
+
+                updatePatronInfo(userIDForUpdate, userNameForUpdate, emailForUpdate, passwordForUpdate);
+                break;
+
+            case 0:
+                System.out.println("Exiting the system.");
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                showMenu();
+        }
+    }
 
     static void createUser(String id, String name, String email, String password) {
         if (userQuantity < INDEX) {
@@ -226,7 +356,7 @@ public class Main {
 
     }
 
-    static void returnBook(String bookISBN, String bookName, String bookAuthor, String bookINFO, String userID) {
+    static void returnBook(String bookISBN, String userID) {
         Boolean bookFound = false;
 
         for (int i = 0; i < bookQuantity; i++) {
@@ -243,8 +373,18 @@ public class Main {
             transactions[transactionQuantity][2] = returnDate.toString();
             transactionQuantity++;
 
-            addBook(bookISBN, bookName, bookAuthor, bookINFO);
+            
+            System.out.print("Enter the book name you would like to add: ");
+            String bookName = scanner.nextLine();
+
+            System.out.print("Enter the book author you would like to add: ");
+            String bookAuthor = scanner.nextLine();
+
+            System.out.print("Enter the book name you would like to add: ");
+            String bookINFO = scanner.nextLine();
             succesfullTransactionInfo("returnBook");
+
+            addBook(bookISBN, bookName, bookAuthor, bookINFO);
         }
     }
 
@@ -583,7 +723,7 @@ public class Main {
             if (books[i][0].equals(ISBN)) {
                 bookFound = true;
                 System.out.println("\nBook is already available in the library, you can borrow it right now");
-                // checkoutBook();
+                checkOutBook(ISBN, ID);
                 break;
             }
         }
