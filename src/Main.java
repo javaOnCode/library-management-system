@@ -1,8 +1,8 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
@@ -263,8 +263,8 @@ public class Main {
 
                 books[bookQuantity - 1] = null;
                 bookQuantity--;
-                succesfullTransactionInfo("removeBook");
                 truncateBooksArrayOnDeletion(ISBN);
+                succesfullTransactionInfo("removeBook");
                 System.out.printf("\"%s\" - book with specific ISBN is deleted from the library.\n", ISBN);
                 break;
             }
@@ -606,5 +606,5 @@ public class Main {
         System.out.println("Books array has been truncated.");
 
     }
-    
+  
 }
