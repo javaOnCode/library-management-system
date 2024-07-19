@@ -62,6 +62,7 @@ public class Main {
         System.out.println("14. Generate Reports(books,users,transactions)");
         System.out.println("15. Delete User Information");
         System.out.println("16. Update Patron Information");
+        System.out.println("17. Check Book Eligibility");
         System.out.println("0. Exit");
         System.out.print("\nEnter your choice here: ");
 
@@ -214,7 +215,11 @@ public class Main {
 
                 updatePatronInfo(userIDForUpdate, userNameForUpdate, emailForUpdate, passwordForUpdate);
                 break;
+            case 17:
+                System.out.print("Enter user ID for book eligibility: ");
+                String IDForEligibility = scanner.nextLine();
 
+                checkPatronEligibilityForCheckout(IDForEligibility);
             case 0:
                 System.out.println("Exiting the system.");
                 System.exit(0);
@@ -257,7 +262,7 @@ public class Main {
     }
 
 
-    static void checkBookReturnDeadline(String userID) {
+    static long checkBookReturnDeadline(String userID) {
         String tempBorrowDate = "";
         for (int i = 0; i < transactionQuantity; i++) {
             if (userID == transactions[i][1]) {
@@ -267,13 +272,24 @@ public class Main {
         LocalDate borrowDate = LocalDate.parse(tempBorrowDate, formattedDate);
         long dayCount = ChronoUnit.DAYS.between(borrowDate, currentDate);
 
+        return dayCount;
+    }
+
+    static void checkPatronEligibilityForCheckout(String userID) {
+        long dayCount = checkBookReturnDeadline(userID);
+
         if (dayCount > 5) {
             System.out.println("You did not return your borrowed book in time");
             System.out.println("You can not get another book!");
             System.out.println("Return your book in time please");
         }
-
+        else {
+            System.out.println("You can get a new book");
+            System.out.println("Here are our books");
+            viewAvailableBooks();
+        }
     }
+
 
     static void searchBooks(String input, String bookTitle, String bookAuthor, String bookISBN) {
         if (input.toLowerCase().equals("title")) {
