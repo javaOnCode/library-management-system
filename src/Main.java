@@ -18,20 +18,50 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        createUser("1","user","user.mail" ,"123");
-        Boolean isLogin = login();
+        createUser("456789", "soltan", "soltan@gmail.com", "345678");
+        System.out.print("Do you have active subscription on our library? (y/n): ");
+        String ans = scanner.nextLine();
+
+        if(ans.equals("y")){
+            Boolean isLogin = login();
+            while (true) {
+                if (isLogin) {
+                    showMenu();
+                } else {
+                    System.out.println("Please try to login again");
+                    login();
+                }
+            }
+        }
+        else{
+            System.out.println("Let's create an account.");
+            System.out.print("Please enter your ID: ");
+            String idForRegistration = scanner.nextLine();
+
+            System.out.print("Enter your name: ");
+            String nameForRegistration = scanner.nextLine();
+
+            System.out.print("Enter your email: ");
+            String mailForRegistration = scanner.nextLine();
+
+            System.out.print("Enter password: ");
+            String passwordForRegistration = scanner.nextLine();
 
 
-        if (isLogin) {
-           showMenu();
+            createUser(idForRegistration, nameForRegistration, mailForRegistration, passwordForRegistration);
+
+            while(true){
+                showMenu();
+            }
         }
-        else {
-            System.out.println("Please try to login again");
-            login();
-        }
+
+
+
+
 
 
     }
+
     static void showMenu() {
         System.out.println("\nWelcome to our Library!");
         System.out.println("Please choose the operation you would like to implement due to its index.");
@@ -71,19 +101,18 @@ public class Main {
 
                 createUser(IDForRegister, userNameForRegister, emailForRegister, passwordForRegister);
                 break;
-
             case 2:
                 login();
                 break;
 
             case 3:
-            System.out.print("Enter the ISBN of the book you would like to check out: "); 
-            String ISBNforCheckout = scanner.nextLine();
+                System.out.print("Enter the ISBN of the book you would like to check out: ");
+                String ISBNforCheckout = scanner.nextLine();
 
-            System.out.print("Enter user ID: ");
-            String IDforCheckout = scanner.nextLine();
+                System.out.print("Enter user ID: ");
+                String IDforCheckout = scanner.nextLine();
 
-               checkOutBook(ISBNforCheckout, IDforCheckout);
+                checkOutBook(ISBNforCheckout, IDforCheckout);
 
                 break;
             case 4:
@@ -234,14 +263,14 @@ public class Main {
         }
     }
 
-    static boolean login(){
-        System.out.println("Enter your email: ");
+    static boolean login() {
+        System.out.print("Enter your email: ");
         String email = scanner.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
-        for (int i=0; i<userQuantity; i++){
-            if(users[i][2].equals(email) && users[i][3].equals(password)){
+        for (int i = 0; i < userQuantity; i++) {
+            if (users[i][2].equals(email) && users[i][3].equals(password)) {
                 System.out.println("Login successful. Welcome, " + users[i][1] + "!");
                 return true;
             }
@@ -271,8 +300,7 @@ public class Main {
             System.out.println("You did not return your borrowed book in time");
             System.out.println("You can not get another book!");
             System.out.println("Return your book in time please");
-        }
-        else {
+        } else {
             System.out.println("You can get a new book");
             System.out.println("Here are our books");
             viewAvailableBooks();
@@ -396,7 +424,7 @@ public class Main {
             transactions[transactionQuantity][2] = returnDate.toString();
             transactionQuantity++;
 
-            
+
             System.out.print("Enter the book name you would like to add: ");
             String bookName = scanner.nextLine();
 
@@ -509,7 +537,8 @@ public class Main {
         }
 
     }
-       static void checkOutBook(String ISBN,String userID) {
+
+    static void checkOutBook(String ISBN, String userID) {
 
         boolean bookFound = false;
 
@@ -518,7 +547,7 @@ public class Main {
                 bookFound = true;
 
                 transactions[transactionQuantity][0] = books[i][0];
-                transactions[transactionQuantity][1]=userID;
+                transactions[transactionQuantity][1] = userID;
                 transactions[transactionQuantity][2] = currentDate.toString();
                 transactionQuantity++;
 
@@ -533,7 +562,6 @@ public class Main {
             System.out.println("Book \"" + ISBN + "\" not found in the library.");
         }
     }
-
 
 
     static void deleteUserInformation(String ID) {
@@ -803,27 +831,28 @@ public class Main {
             System.out.printf("%d. ISBN: %s, User ID: %s, Date: %s%n", i + 1, transactions[i][0], transactions[i][1], transactions[i][2]);
         }
     }
+
     static void truncateBooksArrayOnDeletion(String ISBN) {
 
         String[][] newBooksArray = new String[books.length][4];
-        int newIndex=0;
+        int newIndex = 0;
 
-        for(int i=0;i<bookQuantity;i++){
-            if(!books[i][0].equals(ISBN)){
-                newBooksArray[newIndex]=books[i];
+        for (int i = 0; i < bookQuantity; i++) {
+            if (!books[i][0].equals(ISBN)) {
+                newBooksArray[newIndex] = books[i];
                 newIndex++;
 
-            System.out.println("Books array has been truncated.");
+                System.out.println("Books array has been truncated.");
             }
         }
-        books= new String[newIndex][4];
+        books = new String[newIndex][4];
         System.arraycopy(newBooksArray, 0, books, 0, newIndex);
 
-        bookQuantity=newIndex;
+        bookQuantity = newIndex;
 
 
         System.out.println("Books array has been truncated.");
 
     }
-  
+
 }
