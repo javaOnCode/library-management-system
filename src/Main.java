@@ -18,7 +18,6 @@ public class Main {
     static DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        createUser("456789", "soltan", "soltan@gmail.com", "345678");
         System.out.print("Do you have active subscription on our library? (y/n): ");
         String ans = scanner.nextLine();
 
